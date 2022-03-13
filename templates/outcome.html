@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+  <br>
+  <h2 style="text-align: center;">Salary statistics</h2>
+  <br><br>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"  style="text-align: center;"><strong>Your position<hr></strong></h5>
+          <p class="card-text">
+            {% if title_pos["pos"]>=80 %}
+          <h5>Great you are ahead of {{ title_pos["ppl_below_you"] }} professionals in the same job</h5>
+          {% else %}
+          <h5>You are ahead of {{ title_pos["pos"] }}% professionals in the same job</h5>
+          {% endif %}
+          </p>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ title_pos["pos"] }}%" aria-valuemin="0" aria-valuemax="100"
+              style="width:{{ title_pos["pos"] }}%">
+              {{ title_pos["pos"] }}%
+            </div>
+          </div><br>
+          <p class="card-text">
+            {% if company_pos["pos"]>=80 %}
+          <h5>Great you are ahead of {{ company_pos["ppl_below_you"] }} professionals in the same company</h5>
+          {% else %}
+          <h5>You are ahead of {{ company_pos["pos"] }}% professionals in the same company</h5>
+          {% endif %}
+          </p>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ company_pos["pos"] }}%" aria-valuemin="0" aria-valuemax="100"
+              style="width:{{ company_pos["pos"] }}%">
+              {{ company_pos["pos"] }}%
+            </div>
+          </div><br>
+          <p class="card-text">
+            {% if location_pos["pos"]>=80 %}
+          <h5>Great you are ahead of {{ location_pos["ppl_below_you"] }} professionals in the same location</h5>
+          {% else %}
+          <h5>You are ahead of {{ location_pos["pos"] }}% professionals in the same location</h5>
+          {% endif %}
+          </p>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ location_pos["pos"] }}%" aria-valuemin="0" aria-valuemax="100"
+              style="width:{{ location_pos["pos"] }}%">
+              {{ location_pos["pos"] }}%
+            </div>
+          </div><br>
+          <p class="card-text">
+            {% if company_title_pos["pos"]>=80 %}
+          <h5>Great you are ahead of {{ company_title_pos["ppl_below_you"] }} professionals in the same company and title</h5>
+          {% else %}
+          <h5>You are ahead of {{ company_title_pos["pos"] }}% professionals in the same company and title</h5>
+          {% endif %}
+          </p>
+          <div class="progress" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ company_title_pos["pos"] }}%" aria-valuemin="0" aria-valuemax="100"
+              style="width:{{ company_title_pos["pos"] }}%">
+              {{ company_title_pos["pos"] }}%
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h6><p class="card-text" style="text-align: center;">Average Annual Salary of {{ input_params["title"] }} <hr>  <h2 style="text-align: center;">{{ avg_details["title_avg"] }}</h2></p></h6>
+        </div>
+      </div><br>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h6><p class="card-text" style="text-align: center;">Average Annual Salary in {{ input_params["company"] }} <hr> <h2 style="text-align: center;"> {{ avg_details["company_avg"] }}</h2></p></h6>
+          
+        </div>
+      </div><br>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h6><p class="card-text" style="text-align: center;">Average Annual Salary in {{ input_params["location"] }} <hr> <h2 style="text-align: center;"> {{ avg_details["location_avg"] }}</h2></p></h6>
+          
+        </div>
+      </div><br>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h6><p class="card-text" style="text-align: center;">Average Annual Salary of {{ input_params["title"] }} in {{ input_params["location"] }} <hr> <h2 style="text-align: center;"> {{ avg_details["location_title_avg"] }}</h2></p></h6>
+          
+        </div>
+      </div><br>
+    </div>
+
+  
+  </div>
+
+  <br><br>
+
+</div>
+
+{% endblock %}

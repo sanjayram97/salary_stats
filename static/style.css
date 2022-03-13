@@ -1,0 +1,14 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+div {
+    display: block;
+}
+#similarDesignationCarousal .salaryCardWrapper[data-v-51b413d8] {
+    padding: 1.25rem 1.25rem 1rem;
+    cursor: pointer;
+}
