@@ -53,4 +53,4 @@ def func():
 if __name__ == "__main__":
     df, df_company_aggregates, df_job_title_aggregates = fetch_preprocess_data()
     print('completed data fetch and preprocess')
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=8080)
