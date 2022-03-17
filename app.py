@@ -45,20 +45,6 @@ def func():
     company_title_pos = {"pos": round(pos*100), "ppl_below_you": int(ppl_below_you), "tot_ppl": int(tot_ppl)}
     # print('Company and Title: ', company_title_pos)
 
-    title_pos =  {'pos': 97, 'ppl_below_you': 4324, 'tot_ppl': 4464}
-    company_pos =  {'pos': 92, 'ppl_below_you': 12, 'tot_ppl': 13}
-    location_pos =  {'pos': 86, 'ppl_below_you': 1451, 'tot_ppl': 1678}
-    company_title_pos =  {'pos': 100, 'ppl_below_you': 6, 'tot_ppl': 6}
-    input_params =  {'company': 'tiger analytics', 'title': 'data analyst', 'location': 'Pune', 'salary': 1250000}
-    avg_details =  {'company_avg': '9.5 LPA', 'title_avg': '5.9 LPA', 'location_avg': '9.1 LPA', 'location_title_avg': '5.2 LPA'}
-
-    print('title_pos : ', title_pos)
-    print('company_pos : ', company_pos)
-    print('location_pos : ', location_pos)
-    print('company_title_pos : ', company_title_pos)
-    print('input_params : ', input_params)
-    print('avg_details : ', avg_details)
-
     return render_template('outcome.html', 
                             title_pos = title_pos, 
                             company_pos = company_pos, 
