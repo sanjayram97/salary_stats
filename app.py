@@ -6,6 +6,9 @@ from utils import get_mean_details
 
 app = Flask(__name__)
 
+df, df_company_aggregates, df_job_title_aggregates = fetch_preprocess_data()
+print('completed data fetch and preprocess')
+
 @app.route('/', methods=['GET','POST'])
 def index():
     return render_template('index.html')
@@ -65,6 +68,4 @@ def func():
                             avg_details = avg_details)
 
 if __name__ == "__main__":
-    df, df_company_aggregates, df_job_title_aggregates = fetch_preprocess_data()
-    print('completed data fetch and preprocess')
-    app.run(debug=False)
+    app.run(debug=True)
