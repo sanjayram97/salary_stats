@@ -7,7 +7,6 @@ from utils import get_mean_details
 app = Flask(__name__)
 
 df, df_company_aggregates, df_job_title_aggregates = fetch_preprocess_data()
-df.to_csv('data/preprocessed_data.csv', index=False)
 print('completed data fetch and preprocess')
 
 @app.route('/', methods=['GET','POST'])
