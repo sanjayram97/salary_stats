@@ -7,11 +7,6 @@ def get_mean_details(input_params, df):
     location_avg_sal = round(df['Tot_sal_sum'][df['Location_preprocessed'] == input_params['location']].sum() / df['Salaries Reported'][df['Location_preprocessed'] == input_params['location']].sum())
     location_title_avg_sal = round(df['Tot_sal_sum'][df['Location_Title'] == input_params['location']+input_params['title']].sum() / df['Salaries Reported'][df['Location_Title'] == input_params['location']+input_params['title']].sum())
 
-    # company_avg_sal = numerize.numerize(company_avg_sal)
-    # title_avg_sal = numerize.numerize(title_avg_sal)
-    # location_avg_sal = numerize.numerize(location_avg_sal)
-    # location_title_avg_sal = numerize.numerize(location_title_avg_sal)
-
     company_avg_sal/= 100000
     title_avg_sal/= 100000
     location_avg_sal/= 100000
