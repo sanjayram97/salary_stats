@@ -27,7 +27,7 @@ def func():
 
     input_params = {"company": company, "title": title, "location": location, "salary": salary}
 
-    company = preprocess_string(company)
+    # company = preprocess_string(company)
     # title = preprocess_string(title)
     location = preprocess_string(location)
 

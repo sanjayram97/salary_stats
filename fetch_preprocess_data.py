@@ -62,6 +62,21 @@ def fetch_preprocess_data():
     df = df_1.append(df_2, ignore_index=True)
     df = df.dropna()
     
+    # Refactored company name
+    df_company = pd.read_csv('data/company_map.csv')
+    df_company = df_company[['Company Name_preprocessed', 'company_map']]
+    df_company = df_company.dropna()
+    df_company = df_company.set_index('Company Name_preprocessed')
+    company_map = df_company.to_dict()['company_map']
+
+    df['Company Name_preprocessed'] = df['Company Name_preprocessed'].map(company_map)
+    df = df.dropna()
+    
+    # Total sum of salary = Tot_sal * Salaries reported
+    df['Tot_sal_sum'] = df['Tot_sal'] * df['Salaries Reported']
+
+    # Multiple aggregates
+    
     df['Company_Title'] = df['Company Name_preprocessed'] + df['Job Title_preprocessed']
     df['Location_Title'] = df['Location_preprocessed'] + df['Job Title_preprocessed']
 
@@ -88,5 +103,5 @@ def fetch_preprocess_data():
     df_job_title_aggregates = df.groupby(['Job Title']).agg({'Tot_sal': ['mean', 'median', 'count']}).reset_index()
     df_job_title_aggregates.columns = ['Job Title', 'mean', 'median', 'count']
     print('Data exercise completed')
-
-    return df, df_company_aggregates, df_job_title_aggregates    
+    
+    return df, df_company_aggregates, df_job_title_aggregates

@@ -2,10 +2,10 @@ from numerize import numerize
 
 def get_mean_details(input_params, df):
 
-    company_avg_sal = round(df['Tot_sal'][df['Company Name_preprocessed'] == input_params['company']].mean())
-    title_avg_sal = round(df['Tot_sal'][df['Job Title_preprocessed'] == input_params['title']].mean())
-    location_avg_sal = round(df['Tot_sal'][df['Location_preprocessed'] == input_params['location']].mean())
-    location_title_avg_sal = round(df['Tot_sal'][df['Location_Title'] == input_params['location']+input_params['title']].mean())
+    company_avg_sal = round(df['Tot_sal_sum'][df['Company Name_preprocessed'] == input_params['company']].sum() / df['Salaries Reported'][df['Company Name_preprocessed'] == input_params['company']].sum())
+    title_avg_sal = round(df['Tot_sal_sum'][df['Job Title_preprocessed'] == input_params['title']].sum() / df['Salaries Reported'][df['Job Title_preprocessed'] == input_params['title']].sum())
+    location_avg_sal = round(df['Tot_sal_sum'][df['Location_preprocessed'] == input_params['location']].sum() / df['Salaries Reported'][df['Location_preprocessed'] == input_params['location']].sum())
+    location_title_avg_sal = round(df['Tot_sal_sum'][df['Location_Title'] == input_params['location']+input_params['title']].sum() / df['Salaries Reported'][df['Location_Title'] == input_params['location']+input_params['title']].sum())
 
     # company_avg_sal = numerize.numerize(company_avg_sal)
     # title_avg_sal = numerize.numerize(title_avg_sal)
