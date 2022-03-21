@@ -42,8 +42,29 @@ def fetch_preprocess_data():
     df['Company Name_preprocessed'] = df['Company Name'].apply(lambda x: preprocess_string(x))
     df['Job Title_preprocessed'] = df['Job Title'].apply(lambda x: preprocess_string(x))
     df['Location_preprocessed'] = df['Location'].apply(lambda x: preprocess_string(x))
+    
+    # Refactored job title
+    df_title = pd.read_csv('data/title_map.csv')
+    df_title_1 = df_title[['Job Title_preprocessed', 'title_map_1']]
+    df_title_1 = df_title_1.dropna()
+    df_title_2 = df_title[['Job Title_preprocessed', 'title_map_2']]
+    df_title_2 = df_title_2.dropna()
+
+    title_map_1 = df_title_1.set_index('Job Title_preprocessed').to_dict()['title_map_1']
+    title_map_2 = df_title_2.set_index('Job Title_preprocessed').to_dict()['title_map_2']
+
+    df_1 = df.copy()
+    df_2 = df.copy()
+
+    df_1['Job Title_preprocessed'] = df_1['Job Title_preprocessed'].map(title_map_1)
+    df_2['Job Title_preprocessed'] = df_2['Job Title_preprocessed'].map(title_map_2)
+
+    df = df_1.append(df_2, ignore_index=True)
+    df = df.dropna()
+    
     df['Company_Title'] = df['Company Name_preprocessed'] + df['Job Title_preprocessed']
     df['Location_Title'] = df['Location_preprocessed'] + df['Job Title_preprocessed']
+
 
     ##### remove invalid companies and titles
     print('Removing invalid companies and titles')
@@ -67,5 +88,5 @@ def fetch_preprocess_data():
     df_job_title_aggregates = df.groupby(['Job Title']).agg({'Tot_sal': ['mean', 'median', 'count']}).reset_index()
     df_job_title_aggregates.columns = ['Job Title', 'mean', 'median', 'count']
     print('Data exercise completed')
-    
-    return df, df_company_aggregates, df_job_title_aggregates
+
+    return df, df_company_aggregates, df_job_title_aggregates    

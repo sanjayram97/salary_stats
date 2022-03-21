@@ -7,12 +7,12 @@ from utils import get_mean_details
 app = Flask(__name__)
 
 df, df_company_aggregates, df_job_title_aggregates = fetch_preprocess_data()
+companies = df['Company Name_preprocessed'].sort_values().unique().tolist()
+titles = df['Job Title_preprocessed'].sort_values().unique().tolist()
 print('completed data fetch and preprocess')
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    companies = df['Company Name_preprocessed'].sort_values().unique().tolist()
-    titles = df['Job Title_preprocessed'].sort_values().unique().tolist()
     return render_template('index.html', companies = companies, titles = titles)
 
 @app.route('/func', methods=['POST'])
@@ -23,11 +23,12 @@ def func():
     print(title)
     location = request.form.get("location")
     salary = int(request.form.get("salary"))
+    print(df[['Job Title', 'Job Title_preprocessed']].head(2))
 
     input_params = {"company": company, "title": title, "location": location, "salary": salary}
 
     company = preprocess_string(company)
-    title = preprocess_string(title)
+    # title = preprocess_string(title)
     location = preprocess_string(location)
 
     preprocessed_input_params = {"company": company, "title": title, "location": location, "salary": salary}
