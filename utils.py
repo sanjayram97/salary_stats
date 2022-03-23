@@ -1,4 +1,4 @@
-from numerize import numerize
+from csv import writer
 
 def get_mean_details(input_params, df):
 
@@ -25,3 +25,9 @@ def get_mean_details(input_params, df):
     print('Average details: ', mean_details)
     
     return mean_details
+
+def insert_record(details):
+    with open('data/new_records.csv', 'a') as f_object:
+        writer_object = writer(f_object)
+        writer_object.writerow(details)
+        f_object.close()

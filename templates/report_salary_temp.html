@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Salary Details</h2>
+    <hr>
+    <form action="{{ url_for("thankyou")}}" method="post">
+        <div class="form-group row">
+            <label for="company" class="col-sm-2 col-form-label"><strong>Company </strong></label>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="company" placeholder="company">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label"><strong>Title </strong></label>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="title" placeholder="title">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+            <label for="location" class="col-sm-2 col-form-label"><strong>Location </strong></label>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" name="location" placeholder="location">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+            <label for="salary" class="col-sm-2 col-form-label"><strong>Salary </strong></label>
+            <div class="col-sm-6">
+            <input type="number" class="form-control" name="salary" placeholder="salary">
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from fetch_preprocess_data import fetch_preprocess_data
 from pay_stats_utils import salary_pos_title, salary_pos_company, salary_pos_location, salary_pos_company_title
 from fetch_preprocess_data import preprocess_string
-from utils import get_mean_details
+from utils import get_mean_details, insert_record
 
 app = Flask(__name__)
 
@@ -57,6 +57,24 @@ def func():
                             company_title_pos = company_title_pos,
                             input_params = input_params,
                             avg_details = avg_details)
+
+
+@app.route('/report_salary', methods=['POST','GET'])
+def report_salary():
+    return render_template('report_salary_temp.html')
+
+@app.route('/thankyou', methods=['POST'])
+def thankyou():
+    company = request.form.get("company")
+    title = request.form.get("title")
+    location = request.form.get("location")
+    salary = request.form.get("salary")
+    insert_record([company, title, location, salary])
+    return render_template('thankyou.html', company = company,
+                            title = title,
+                            location = location,
+                            salary = salary)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
