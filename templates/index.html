@@ -8,10 +8,10 @@
 <form action="{{ url_for("func")}}" method="post">
 
     <div class="form-group row">
-        <label for="company" class="col-sm-2 col-form-label"><strong>Company select</strong></label>
+        <label for="company" class="col-sm-2 col-form-label"><strong>Company </strong></label>
         <div class="col-sm-6">
         <select class="form-control" id="company" name="company">
-            {% for item in companies %}
+            {% for item in comp_title_df['Company Name_preprocessed'].unique() %}
                 <option>{{item}}</option>
             {% endfor %}
         </select>
@@ -21,7 +21,7 @@
     <br>
 
     <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label"><strong>Title select</strong></label>
+        <label for="title" class="col-sm-2 col-form-label"><strong>Title </strong></label>
         <div class="col-sm-6">
         <select class="form-control" id="title" name="title">
             {% for item in titles %}
