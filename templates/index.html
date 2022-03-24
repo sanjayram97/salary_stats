@@ -2,54 +2,90 @@
 
 {% block content %}
 
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("company");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("option");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
 <div class="container">
     <h1>Check where you stand</h1>
     <hr>
-<form action="{{ url_for("func")}}" method="post">
+    <form action="{{ url_for("func")}}" method="post">
 
-    <div class="form-group row">
-        <label for="company" class="col-sm-2 col-form-label"><strong>Company </strong></label>
-        <div class="col-sm-6">
-        <select class="form-control" id="company" name="company">
-            {% for item in comp_title_df['Company Name_preprocessed'].unique() %}
-                <option>{{item}}</option>
-            {% endfor %}
-        </select>
+        <div class="form-group row" id="myDropdown">
+            <label for="company" class="col-sm-2 col-form-label"><strong>Company </strong></label>
+
+            <div class="col-sm-6">
+                <input list="company_list" id="company" name="company" placeholder="Company Search.."
+                    class="form-control">
+                <datalist id="company_list">
+                    {% for item in comp_title_df['Company Name_preprocessed'].unique() %}
+                    <option>{{item}}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
         </div>
-      </div>
 
-    <br>
+        <br>
 
-    <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label"><strong>Title </strong></label>
-        <div class="col-sm-6">
-        <select class="form-control" id="title" name="title">
-            {% for item in titles %}
-                <option>{{item}}</option>
-            {% endfor %}
-        </select>
+        <div class="form-group row" id="myDropdown">
+            <label for="title" class="col-sm-2 col-form-label"><strong>Title </strong></label>
+
+            <div class="col-sm-6">
+                <input list="title_list" id="title" name="title" placeholder="Job Title Search.." class="form-control">
+                <datalist id="title_list">
+                    {% for item in comp_title_df['Job Title_preprocessed'].unique() %}
+                    <option>{{item}}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
         </div>
-      </div>
-      
-    <br>
 
-    <div class="form-group row">
-        <label for="location" class="col-sm-2 col-form-label"><strong>Location </strong></label>
-        <div class="col-sm-6">
-        <input type="text" class="form-control" name="location" placeholder="location">
-        </div>
-    </div>
-    <br>
-    <div class="form-group row">
-        <label for="salary" class="col-sm-2 col-form-label"><strong>Salary </strong></label>
-        <div class="col-sm-6">
-        <input type="number" class="form-control" name="salary" placeholder="salary">
-        </div>
-    </div>
-    <hr>
-    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-  </form>
+        <br>
 
-  <a href="/report_salary">Report salary</a>
+        <div class="form-group row" id="myDropdown">
+            <label for="location" class="col-sm-2 col-form-label"><strong>Title </strong></label>
+
+            <div class="col-sm-6">
+                <input list="location_list" id="location" name="location" placeholder="Location Search.." class="form-control">
+                <datalist id="location_list">
+                    {% for item in comp_title_df['Location'].unique() %}
+                    <option>{{item}}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group row">
+            <label for="salary" class="col-sm-2 col-form-label"><strong>Salary </strong></label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" name="salary" placeholder="salary">
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+
+    <a href="/report_salary">Report salary</a>
 </div>
 {% endblock %}
