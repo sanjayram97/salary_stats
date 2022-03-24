@@ -3,26 +3,11 @@
 {% block content %}
 
 <script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    function filterFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("company");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("option");
-        for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
+    function check(elem) {
+        console.log('1');  
+        let c = document.get("company");
+        console.log(c);
+        
     }
 </script>
 
@@ -36,7 +21,7 @@
 
             <div class="col-sm-6">
                 <input list="company_list" id="company" name="company" placeholder="Company Search.."
-                    class="form-control">
+                    class="form-control" onchange="check(this);">
                 <datalist id="company_list">
                     {% for item in comp_title_df['Company Name_preprocessed'].unique() %}
                     <option>{{item}}</option>
