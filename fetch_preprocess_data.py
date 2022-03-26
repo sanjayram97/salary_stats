@@ -23,6 +23,48 @@ def preprocess_string(x):
     x = x.replace(' ','')
     return x
 
+def salary_range(x):
+    if x<=3:
+        return 0
+    elif x>3 and x<=5:
+        return 1
+    elif x>5 and x<=7:
+        return 2
+    elif x>7 and x<=10:
+        return 3
+    elif x>10 and x<=12:
+        return 4
+    elif x>12 and x<=14:
+        return 5
+    elif x>14 and x<=16:
+        return 6
+    elif x>16 and x<=18:
+        return 7
+    elif x>18 and x<=20:
+        return 8
+    elif x>20 and x<=22:
+        return 9
+    elif x>22 and x<=24:
+        return 10
+    elif x>24 and x<=26:
+        return 11
+    elif x>26 and x<=28:
+        return 12
+    elif x>28 and x<=30:
+        return 13
+    elif x>30 and x<=32:
+        return 14
+    elif x>32 and x<=34:
+        return 15
+    elif x>34 and x<=36:
+        return 16
+    elif x>36 and x<=38:
+        return 17
+    elif x>38 and x<=40:
+        return 18
+    else:
+        return 19
+
 def fetch_preprocess_data():
     # input dataset
     print('Reading dataset')
@@ -94,6 +136,10 @@ def fetch_preprocess_data():
     print('Total number of job titles         : ', df['Job Title'].nunique())
     print('Total number of locations          : ', df['Location'].nunique())
     print(' --------------------------------- ')
+
+    df['Tot_sal_in_lacs'] = df['Tot_sal'] / 100000
+    df['Tot_sal_in_lacs'] = round(df['Tot_sal_in_lacs'])
+    df['salary_range'] = df['Tot_sal_in_lacs'].apply(salary_range)
 
     print('Aggregating by company')
     df_company_aggregates = df.groupby(['Company Name']).agg({'Tot_sal': ['mean', 'median', 'count']}).reset_index()

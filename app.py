@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from fetch_preprocess_data import fetch_preprocess_data
-from pay_stats_utils import salary_pos_title, salary_pos_company, salary_pos_location, salary_pos_company_title, get_mean_details, insert_record
+from pay_stats_utils import salary_pos_title, salary_pos_company, salary_pos_location, salary_pos_company_title, get_mean_details, insert_record, salary_title_chart
 from fetch_preprocess_data import preprocess_string
 
 app = Flask(__name__)
@@ -51,13 +51,17 @@ def func():
     company_title_pos = {"company_title_flag": company_title_flag, "pos": round(pos*100), "ppl_below_you": int(ppl_below_you), "tot_ppl": int(tot_ppl)}
     # print('Company and Title: ', company_title_pos)
 
+    plot_data = salary_title_chart(df, title)
+
     return render_template('outcome.html', 
                             title_pos = title_pos, 
                             company_pos = company_pos, 
                             location_pos = location_pos, 
                             company_title_pos = company_title_pos,
                             input_params = input_params,
-                            avg_details = avg_details)
+                            avg_details = avg_details,
+                            chart_data_labels = plot_data['range'].tolist(),
+                            chart_data_values = plot_data['count'].tolist())
 
 
 @app.route('/report_salary', methods=['POST','GET'])

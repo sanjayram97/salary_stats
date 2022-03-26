@@ -60,7 +60,7 @@
             {% if company_title_pos["pos"]>=80 %}
           <h5>Great you are ahead of {{ company_title_pos["ppl_below_you"] }} professionals working at {{ input_params['company'] }} as {{ input_params['title'] }}</h5>
           {% else %}
-          <h5>You are ahead of {{ company_title_pos["pos"] }}% professionals in the same company and title</h5>
+          <h5>You are ahead of {{ company_title_pos["pos"] }}% professionals working at {{ input_params['company'] }} as {{ input_params['title'] }}</h5>
           {% endif %}
           </p>
           <div class="progress" style="height: 25px;">
@@ -73,6 +73,48 @@
           </div>
         </div>
       </div>
+
+      <br>
+      <div class="card">
+        <!-- add new code -->
+        <canvas id="histogram"></canvas>
+        <script>
+          const ctx = document.getElementById('histogram').getContext('2d');
+
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: {{ chart_data_labels | safe }},
+    datasets: [{
+      label: 'Number of Arrivals',
+      data: {{ chart_data_values | safe }},
+      
+    }]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        display: false,
+        barPercentage: 1,
+
+      }, {
+        display: true,
+        ticks: {
+          autoSkip: false,
+
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+        </script>
+      </div>
+
     </div>
 
     <div class="col-sm-4">

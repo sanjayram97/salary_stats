@@ -71,6 +71,15 @@ def get_mean_details(input_params, df):
     
     return mean_details
 
+
+def salary_title_chart(df, title):
+    df = df[df['Job Title_preprocessed'] == title].sort_values('salary_range')
+    plot_data = df['salary_range'].value_counts()
+    plot_data = plot_data.reset_index()
+    plot_data.columns = ['range', 'count']
+    return plot_data
+
+
 def insert_record(details):
     with open('data/new_records.csv', 'a') as f_object:
         writer_object = writer(f_object)
