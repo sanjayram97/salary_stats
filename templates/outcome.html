@@ -17,9 +17,9 @@
           <h5 class="card-title"  style="text-align: center;"><strong>Your position<hr></strong></h5>
           <p class="card-text">
             {% if title_pos["pos"]>=80 %}
-          <h5>Great you are ahead of {{ title_pos["ppl_below_you"] }} professionals in the same job</h5>
+          <h5>Great you are ahead of {{ title_pos["ppl_below_you"] }} professionals working as {{ input_params['title'] }}</h5>
           {% else %}
-          <h5>You are ahead of {{ title_pos["pos"] }}% professionals in the same job</h5>
+          <h5>You are ahead of {{ title_pos["pos"] }}% professionals working as {{ input_params['title'] }}</h5>
           {% endif %}
           </p>
           <div class="progress" style="height: 25px;">
@@ -30,9 +30,9 @@
           </div><br>
           <p class="card-text">
             {% if company_pos["pos"]>=80 %}
-          <h5>Great you are ahead of {{ company_pos["ppl_below_you"] }} professionals in the same company</h5>
+          <h5>Great you are ahead of {{ company_pos["ppl_below_you"] }} professionals working at {{ input_params["company"] }}</h5>
           {% else %}
-          <h5>You are ahead of {{ company_pos["pos"] }}% professionals in the same company</h5>
+          <h5>You are ahead of {{ company_pos["pos"] }}% professionals working at {{ input_params["company"] }}</h5>
           {% endif %}
           </p>
           <div class="progress" style="height: 25px;">
@@ -43,9 +43,9 @@
           </div><br>
           <p class="card-text">
             {% if location_pos["pos"]>=80 %}
-          <h5>Great you are ahead of {{ location_pos["ppl_below_you"] }} professionals in the same location</h5>
+          <h5>Great you are ahead of {{ location_pos["ppl_below_you"] }} professionals working in {{ input_params["location"] }}</h5>
           {% else %}
-          <h5>You are ahead of {{ location_pos["pos"] }}% professionals in the same location</h5>
+          <h5>You are ahead of {{ location_pos["pos"] }}% professionals working in {{ input_params["location"] }}</h5>
           {% endif %}
           </p>
           <div class="progress" style="height: 25px;">
@@ -58,7 +58,7 @@
             {% if company_title_pos["company_title_flag"]==1 %}
           <p class="card-text">
             {% if company_title_pos["pos"]>=80 %}
-          <h5>Great you are ahead of {{ company_title_pos["ppl_below_you"] }} professionals in the same company and title</h5>
+          <h5>Great you are ahead of {{ company_title_pos["ppl_below_you"] }} professionals working at {{ input_params['company'] }} as {{ input_params['title'] }}</h5>
           {% else %}
           <h5>You are ahead of {{ company_title_pos["pos"] }}% professionals in the same company and title</h5>
           {% endif %}
