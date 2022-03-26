@@ -1,5 +1,6 @@
 import pandas as pd
 from csv import writer
+from params import salary_range_map
 
 def salary_pos_title(sal, title, df):
     ppl_below_you = df['Salaries Reported'][(df['Job Title_preprocessed'] == title) 
@@ -77,6 +78,8 @@ def salary_title_chart(df, title):
     plot_data = df['salary_range'].value_counts()
     plot_data = plot_data.reset_index()
     plot_data.columns = ['range', 'count']
+    plot_data = plot_data.sort_values('range')
+    plot_data['range'] = plot_data['range'].map(salary_range_map)
     return plot_data
 
 
