@@ -54,6 +54,8 @@
               {{ location_pos["pos"] }}%
             </div>
           </div><br>
+          <div>
+            {% if company_title_pos["company_title_flag"]==1 %}
           <p class="card-text">
             {% if company_title_pos["pos"]>=80 %}
           <h5>Great you are ahead of {{ company_title_pos["ppl_below_you"] }} professionals in the same company and title</h5>
@@ -67,6 +69,8 @@
               {{ company_title_pos["pos"] }}%
             </div>
           </div><br>
+          {% endif %}
+          </div>
         </div>
       </div>
     </div>
@@ -89,12 +93,15 @@
           
         </div>
       </div><br>
+
+      {% if avg_details["location_title_avg"] != False %}
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h6><p class="card-text" style="text-align: center;">Average Annual Salary of {{ input_params["title"] }} in {{ input_params["location"] }} <hr> <h2 style="text-align: center;"> {{ avg_details["location_title_avg"] }}</h2></p></h6>
           
         </div>
       </div><br>
+      {% endif %}
     </div>
 
   

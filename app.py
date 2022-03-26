@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from fetch_preprocess_data import fetch_preprocess_data
-from pay_stats_utils import salary_pos_title, salary_pos_company, salary_pos_location, salary_pos_company_title
+from pay_stats_utils import salary_pos_title, salary_pos_company, salary_pos_location, salary_pos_company_title, get_mean_details, insert_record
 from fetch_preprocess_data import preprocess_string
-from utils import get_mean_details, insert_record
 
 app = Flask(__name__)
 
@@ -48,8 +47,8 @@ def func():
     location_pos = {"pos": round(pos*100), "ppl_below_you": int(ppl_below_you), "tot_ppl": int(tot_ppl)}
     # print('Location: ', location_pos)
 
-    pos, ppl_below_you, tot_ppl = salary_pos_company_title(salary, company+title, df)
-    company_title_pos = {"pos": round(pos*100), "ppl_below_you": int(ppl_below_you), "tot_ppl": int(tot_ppl)}
+    company_title_flag, pos, ppl_below_you, tot_ppl = salary_pos_company_title(salary, company+title, df)
+    company_title_pos = {"company_title_flag": company_title_flag, "pos": round(pos*100), "ppl_below_you": int(ppl_below_you), "tot_ppl": int(tot_ppl)}
     # print('Company and Title: ', company_title_pos)
 
     return render_template('outcome.html', 
