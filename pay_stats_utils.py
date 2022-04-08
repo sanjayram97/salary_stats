@@ -81,10 +81,3 @@ def salary_title_chart(df, title):
     plot_data = plot_data.sort_values('range')
     plot_data['range'] = plot_data['range'].map(salary_range_map)
     return plot_data
-
-
-def insert_record(details):
-    with open('data/new_records.csv', 'a') as f_object:
-        writer_object = writer(f_object)
-        writer_object.writerow(details)
-        f_object.close()

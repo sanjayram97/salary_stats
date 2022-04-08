@@ -88,7 +88,7 @@ const chart = new Chart(ctx, {
     datasets: [{
       label: 'Number of Arrivals',
       data: {{ chart_data_values | safe }},
-      
+      backgroundColor: '#0d6efd',
     }]
   },
   options: {
@@ -102,11 +102,19 @@ const chart = new Chart(ctx, {
         ticks: {
           autoSkip: false,
 
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Salary Range'
         }
       }],
       yAxes: [{
         ticks: {
           beginAtZero: true
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Salaries reported'
         }
       }]
     }
