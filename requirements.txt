@@ -20,4 +20,4 @@ zipp==3.7.0
 Flask-SQLAlchemy==2.5.1
 Flask-Bcrypt==1.0.0
 Flask-Login==0.5.0
-Flask-Migrat==3.1.0
+Flask-Migrate==3.1.0
